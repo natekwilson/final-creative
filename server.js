@@ -32,6 +32,11 @@ const itemSchema = new mongoose.Schema({
   path: String,
 });
 
+itemSchema.virtual('id').get(function() 
+{
+  return this._id.toHexString();
+});
+
 // Create a model for items in the museum.
 const Item = mongoose.model('Item', itemSchema);
 
@@ -41,7 +46,6 @@ app.listen(3000, () => console.log('Server listening on port 3000!'));
 // Create a new item in the museum: takes a title and a path to an image.
 app.post('/api/items', async (req, res) => {
   const item = new Item({
-    //console.log("items creating new item in the museum!");
     title: req.body.title,
     path: req.body.path,
   });
@@ -74,6 +78,20 @@ app.get('/api/items', async (req, res) => {
   try {
     let items = await Item.find();
     res.send(items);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+// Get a list of all of the items in the museum.
+app.get('/api/items/:id', async (req, res) => {
+  try {
+    await Item.deleteOne(
+      {
+        _id: req.Item.id
+      });
+    res.sendStatus(200);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
