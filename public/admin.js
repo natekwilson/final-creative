@@ -48,6 +48,18 @@ var app = new Vue({
       } catch (error) {
         console.log(error);
       }
+    },
+    async editItem(item) {
+      try {
+        let response = await axios.put("/api/items/" + item._id, {
+          title: this.findItem.title,
+        });
+        this.findItem = null;
+        this.getItems();
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
     }, 
   },
   created() {

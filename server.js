@@ -97,3 +97,19 @@ app.delete('/api/items/:id', async (req, res) => {
     res.sendStatus(500);
   }
 });
+
+// Get a list of all of the items in the museum.
+app.delete('/api/items/:id', async (req, res) => {
+  try {
+    let item = await Item.findOne(
+      {
+        _id: req.params.id
+      });
+    item.title = req.params.title;
+    item.save();
+    res.send(item);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
