@@ -85,11 +85,11 @@ app.get('/api/items', async (req, res) => {
 });
 
 // Get a list of all of the items in the museum.
-app.get('/api/items/:id', async (req, res) => {
+app.delete('/api/items/:id', async (req, res) => {
   try {
     await Item.deleteOne(
       {
-        _id: req.Item.id
+        _id: req.params.id
       });
     res.sendStatus(200);
   } catch (error) {
