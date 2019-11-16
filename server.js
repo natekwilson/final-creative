@@ -99,15 +99,15 @@ app.delete('/api/items/:id', async (req, res) => {
 });
 
 // Get a list of all of the items in the museum.
-app.delete('/api/items/:id', async (req, res) => {
+app.put('/api/items/:id', async (req, res) => {
   try {
     let item = await Item.findOne(
       {
         _id: req.params.id
       });
-    item.title = req.params.title;
+    item.title = req.body.title;
     item.save();
-    res.send(item);
+    res.sendStatus(200);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
