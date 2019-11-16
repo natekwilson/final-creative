@@ -105,7 +105,6 @@ app.put('/api/items/:id', async (req, res) => {
       {
         _id: req.params.id
       });
-    console.log(req.body.title);
     item.title = req.body.title;
     item.save();
     res.sendStatus(200);
