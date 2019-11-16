@@ -68,3 +68,14 @@ app.post('/api/photos', upload.single('photo'), async (req, res) => {
     path: "/images/" + req.file.filename
   });
 });
+
+// Get a list of all of the items in the museum.
+app.get('/api/items', async (req, res) => {
+  try {
+    let items = await Item.find();
+    res.send(items);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});

@@ -4,6 +4,9 @@ var app = new Vue({
     title: "",
     file: null,
     addItem: null,
+    items: [],
+    findTitle: "",
+    findItem: null,
   },
   methods: {
   fileChanged(event) {
@@ -23,5 +26,36 @@ var app = new Vue({
         console.log(error);
       }
     },
-  }
+  async getItems() {
+  	try {
+    	let response = await axios.get("/api/items");
+    	this.items = response.data;
+   	 return true;
+  	} catch (error) {
+   	console.log(error);
+  	}
+    },
+   selectItem(item) {
+      this.findTitle = "";
+      this.findItem = item;
+    },
+   async deleteItem(item) {
+      try {
+        let response = axios.delete("/api/items/" + item._id);
+        this.findItem = null;
+        this.getItems();
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    }, 
+  },
+  created() {
+    this.getItems();
+  },
+  computed: {
+    suggestions() {
+      return this.items.filter(item => item.title.toLowerCase().startsWith(this.findTitle.toLowerCase()));
+    }
+  },
 });
