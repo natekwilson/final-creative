@@ -40,8 +40,6 @@ var app = new Vue({
           this.file= output.url;
         });
     },
-  },
-
   async getItems() {
   	try {
     	let response = await axios.get("/api/items");
