@@ -19,7 +19,8 @@ var app = new Vue({
         let r1 = await axios.post('/api/photos', formData);
         let r2 = await axios.post('/api/items', {
           title: this.title,
-          path: r1.data.path
+          path: r1.data.path,
+          score: 0
         });
         this.addItem = r2.data;
       } catch (error) {

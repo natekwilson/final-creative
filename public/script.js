@@ -13,26 +13,26 @@ var app = new Vue({
         console.log(error);
       }
     },
-  },
-  async upItem(item) {
-    console.log("changing ", item.title)
-      try {
-        let response = await axios.put("/api/items/" + item._id, {
-          score: (item.score + 1),
-        });
-      } catch (error) {
-        console.log(error);
-      }
-  },
-  async downItem(item) {
-    console.log("changing ", item.title)
-      try {
-        let response = await axios.put("/api/items/" + item._id, {
-          score: (item.score - 1),
-        });
-      } catch (error) {
-        console.log(error);
-      }
+    async upItem(item) {
+      console.log("changing ", item.title)
+        try {
+          let response = await axios.put("/api/items/" + item._id, {
+            score: (item.score + 1),
+          });
+        } catch (error) {
+          console.log(error);
+        }
+    },
+    async downItem(item) {
+      console.log("changing ", item.title)
+        try {
+          let response = await axios.put("/api/items/" + item._id, {
+            score: (item.score - 1),
+          });
+        } catch (error) {
+          console.log(error);
+        }
+    },
   },
   created() {
     this.getItems();
