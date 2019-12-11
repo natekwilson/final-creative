@@ -27,6 +27,21 @@ var app = new Vue({
         console.log(error);
       }
     },
+    async summon() {
+      console.log("In Fetch ");
+      var url = "https://api.thecatapi.com/v1/images/search";
+      console.log("URL " + url);
+      fetch(url)
+        .then((data) => {
+          return (data.json());
+        })
+        .then((output) => {
+          console.log("upload");
+          this.file= output.url;
+        });
+    },
+  },
+
   async getItems() {
   	try {
     	let response = await axios.get("/api/items");

@@ -26,11 +26,11 @@
   <div id="app" class="content">
     <section class="image-gallery">
       <div class="image" v-for="item in sortedArray">
-        <h2>{{item.title}}</h2>
+        <h1>{{item.title}}</h1>
         <img :src="item.path" />
         <div style="display: flex; flex-direction: row;">
           <button @click="upItem(item)" style="margin: 20px;">🧡</button>
-          <h2 style="margin: 20px;">{{item.score}}</h2>
+          <h1 style="margin: 20px;">{{item.score}}</h1>
           <button @click="downItem(item)" style="margin: 20px;">💙</button>
         </div>
       </div>

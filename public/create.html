@@ -47,14 +47,8 @@
     </div>
     <div class="add">
         <div class="form">
-          <input v-model="title" placeholder="Title">
-          <p></p>
-          <input type="text" name="api" @change="fileChanged">
-          <button @click="upload">Summon Cat</button>
-        </div>
-        <div class="upload" v-if="addItem">
-          <h2>{{addItem.title}}</h2>
-          <img :src="addItem.path" />
+          <p>https://thecatapi.com/v1/images?api_key=7e3636aa-9e85-49c3-9552-a099ce76c254</p>
+          <button @click="summon">Summon Cat</button>
         </div>
       </div>
     

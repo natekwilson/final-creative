@@ -51,7 +51,6 @@ body {
 }
 
 .image h2 {
-  font-style: italic;
   font-size: 1em;
 }
 
@@ -148,7 +147,7 @@ html {
 #app {
   margin: auto;
   width: 50%;
-  border: 3px solid  rgb(199, 117, 202);
+  border: 3px solid   pink;
   text-align: center;
 }
 
