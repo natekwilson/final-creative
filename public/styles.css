@@ -128,6 +128,7 @@ html {
 
 .image-gallery {
   column-gap: 1.5em;
+  color: #fff;
 }
 
 .image {
@@ -145,7 +146,7 @@ html {
 }
 
 /* Masonry on large screens */
-@media only screen and (min-width: 1024px) {
+@media only screen and (max-width: 1023px) and (min-width: 1024px) {
   .image-gallery {
     column-count: 1;
   }
