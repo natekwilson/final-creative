@@ -18,8 +18,8 @@ var app = new Vue({
         try {
           let response = await axios.put("/api/items/" + item._id, {
             score: (item.score + 1),
-            getItems();
           });
+          this.getItems();
         } catch (error) {
           console.log(error);
         }
@@ -29,8 +29,8 @@ var app = new Vue({
         try {
           let response = await axios.put("/api/items/" + item._id, {
             score: (item.score - 1),
-            getItems();
           });
+          this.getItems();
         } catch (error) {
           console.log(error);
         }
