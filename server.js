@@ -12,7 +12,7 @@ app.use(express.static('public'));
 const mongoose = require('mongoose');
 
 // connect to the database
-mongoose.connect('mongodb://localhost:27017/museum', {
+mongoose.connect('mongodb://localhost:27017/cute', {
   useNewUrlParser: true
 });
 
@@ -26,10 +26,11 @@ const upload = multer({
   }
 });
 
-// Create a scheme for items in the museum: a title and a path to an image.
+// Create a scheme for items in the show down: a title and a path to an image.
 const itemSchema = new mongoose.Schema({
   title: String,
   path: String,
+  score: Number
 });
 
 itemSchema.virtual('id').get(function() 
@@ -37,17 +38,17 @@ itemSchema.virtual('id').get(function()
   return this._id.toHexString();
 });
 
-// Create a model for items in the museum.
+// Create a model for items in the cute showdown database
 const Item = mongoose.model('Item', itemSchema);
 
 app.listen(3000, () => console.log('Server listening on port 3000!'));
 
-
-// Create a new item in the museum: takes a title and a path to an image.
+// Create a new item in the cute showdown takes a title and a path to an image.
 app.post('/api/items', async (req, res) => {
   const item = new Item({
     title: req.body.title,
     path: req.body.path,
+    score: req.body.score,
   });
   try {
     await item.save();
@@ -58,10 +59,7 @@ app.post('/api/items', async (req, res) => {
   }
 });
 
-
-
-// Upload a photo. Uses the multer middleware for the upload and then returns
-// the path where the photo is stored in the file system.
+// Upload an image and keeps a path to the upladed imnage for future reference
 app.post('/api/photos', upload.single('photo'), async (req, res) => {
   // Just a safety check
   if (!req.file) {
@@ -73,7 +71,7 @@ app.post('/api/photos', upload.single('photo'), async (req, res) => {
   });
 });
 
-// Get a list of all of the items in the museum.
+// Get a list of all of the competertiors in the cute showdown
 app.get('/api/items', async (req, res) => {
   try {
     let items = await Item.find();
@@ -84,7 +82,7 @@ app.get('/api/items', async (req, res) => {
   }
 });
 
-// Get a list of all of the items in the museum.
+// remove one of the items from the cute showdown
 app.delete('/api/items/:id', async (req, res) => {
   try {
     await Item.deleteOne(
@@ -98,8 +96,24 @@ app.delete('/api/items/:id', async (req, res) => {
   }
 });
 
-// Get a list of all of the items in the museum.
+// edit one of the item's score in the database
 app.put('/api/items/:id', async (req, res) => {
+  try {
+    let item = await Item.findOne(
+      {
+        _id: req.params.id
+      });
+    item.score = req.body.score;
+    item.save();
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+// edit one of the item's name in the database
+app.put('/api/change/:id', async (req, res) => {
   try {
     let item = await Item.findOne(
       {

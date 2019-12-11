@@ -1,7 +1,7 @@
 body {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
-  background: #fff;
+  background: rgb(34, 25, 34);
   padding: 0px;
   margin: 0px;
 }
@@ -10,8 +10,17 @@ body {
 .header {
   display: flex;
   padding: 20px 100px 0px 100px;
-  background-color: #5BDEFF;
-  color: #fff;
+  background-color: pink;
+  color: rgb(20, 14, 27);
+}
+
+.header a {
+  color: rgb(20, 14, 27);
+}
+
+.logo img {
+  height: 1in;
+  width: 1in;
 }
 
 .title {
@@ -33,7 +42,7 @@ body {
 }
 
 .footer a {
-  color: #000;
+  color: rgb(255, 255, 255);
 }
 
 /* Content */
@@ -67,8 +76,8 @@ body {
   width: 36px;
   height: 36px;
   padding: 8px;
-  background: #333;
-  color: #fff;
+  background: rgb(134, 38, 59);
+  color: rgb(199, 117, 202);
   text-align: center;
 }
 
@@ -102,7 +111,7 @@ input, textarea, select, button {
 }
 
 .suggestion:hover {
-  background-color: #5BDEFF;
+  background-color: pink;
   color: #fff;
 }
 
@@ -131,23 +140,27 @@ html {
   width: 100%;
 }
 
+.heading h2 {
+  color: #fff;
+}
+
 /* Masonry on large screens */
 @media only screen and (min-width: 1024px) {
   .image-gallery {
-    column-count: 4;
+    column-count: 1;
   }
 }
 
 /* Masonry on medium-sized screens */
 @media only screen and (max-width: 1023px) and (min-width: 768px) {
   .image-gallery {
-    column-count: 3;
+    column-count: 1;
   }
 }
 
 /* Masonry on small screens */
 @media only screen and (max-width: 767px) and (min-width: 540px) {
   .image-gallery {
-    column-count: 2;
+    column-count: 1;
   }
 }
