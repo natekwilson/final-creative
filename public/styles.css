@@ -145,6 +145,13 @@ html {
   color: #fff;
 }
 
+#app {
+  margin: auto;
+  width: 50%;
+  border: 3px solid  rgb(199, 117, 202);
+  text-align: center;
+}
+
 /* Masonry on large screens */
 @media only screen and (max-width: 500px) and (min-width: 500px) {
   .image-gallery {
