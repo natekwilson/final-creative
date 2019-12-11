@@ -18,6 +18,7 @@ var app = new Vue({
         try {
           let response = await axios.put("/api/items/" + item._id, {
             score: (item.score + 1),
+            getItems();
           });
         } catch (error) {
           console.log(error);
@@ -28,6 +29,7 @@ var app = new Vue({
         try {
           let response = await axios.put("/api/items/" + item._id, {
             score: (item.score - 1),
+            getItems();
           });
         } catch (error) {
           console.log(error);
@@ -40,9 +42,9 @@ var app = new Vue({
   computed: {
     sortedArray: function() {
       function compare(a, b) {
-        if (a.score < b.score)
-          return -1;
         if (a.score > b.score)
+          return -1;
+        if (a.score < b.score)
           return 1;
         return 0;
       }
