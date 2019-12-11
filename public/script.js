@@ -37,7 +37,7 @@ var app = new Vue({
   created() {
     this.getItems();
   },
-  computer: {
+  computed: {
     sortedArray: function() {
       function compare(a, b) {
         if (a.score < b.score)

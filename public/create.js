@@ -61,9 +61,9 @@ var app = new Vue({
     },
     sortedArray: function() {
       function compare(a, b) {
-        if (a.title < b.title)
+        if (a.score < b.score)
           return -1;
-        if (a.title > b.title)
+        if (a.score > b.score)
           return 1;
         return 0;
       }
