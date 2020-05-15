@@ -38,12 +38,12 @@ itemSchema.virtual('id').get(function()
   return this._id.toHexString();
 });
 
-// Create a model for items in the cute showdown database
+// Create a model for items in the cute Ranking database
 const Item = mongoose.model('Item', itemSchema);
 
 app.listen(9001, () => console.log('Server listening on port 9001!'));
 
-// Create a new item in the cute showdown takes a title and a path to an image.
+// Create a new item in the cute Ranking takes a title and a path to an image.
 app.post('/api/items', async (req, res) => {
   const item = new Item({
     title: req.body.title,
@@ -66,12 +66,11 @@ app.post('/api/photos', upload.single('photo'), async (req, res) => {
     return res.sendStatus(400);
   }
   res.send({
-    //console.log("Uploading photo, return the path of stored photo!");
     path: "/images/" + req.file.filename
   });
 });
 
-// Get a list of all of the competertiors in the cute showdown
+// Get a list of all of the competertiors in the cute Ranking
 app.get('/api/items', async (req, res) => {
   try {
     let items = await Item.find();
@@ -82,7 +81,7 @@ app.get('/api/items', async (req, res) => {
   }
 });
 
-// remove one of the items from the cute showdown
+// remove one of the items from the cute Ranking
 app.delete('/api/items/:id', async (req, res) => {
   try {
     await Item.deleteOne(
