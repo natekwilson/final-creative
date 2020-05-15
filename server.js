@@ -41,7 +41,7 @@ itemSchema.virtual('id').get(function()
 // Create a model for items in the cute showdown database
 const Item = mongoose.model('Item', itemSchema);
 
-app.listen(9000, () => console.log('Server listening on port 9000!'));
+app.listen(9001, () => console.log('Server listening on port 9001!'));
 
 // Create a new item in the cute showdown takes a title and a path to an image.
 app.post('/api/items', async (req, res) => {
